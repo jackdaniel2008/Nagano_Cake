@@ -1,28 +1,35 @@
 Rails.application.routes.draw do
-  # root to: 'public/homes#top'
-  # get '/about' => 'public/homes#about', as: 'about'
-
   devise_for :customers, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
 
-devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
 
-  # resources :items, only: [:index, :show]
-  # get 'customers/my_page' => 'public/customers#show'
-  # get 'customers/edit'
-  # patch 'customers/update'
-  # get 'customers/check'
-  # patch 'customers/withdraw'
-  # resources :cart_items, only: [:index, :create, :update, :destroy]
-  # delete 'cart_items/destroy_all'
-  # resources :orders, only: [:new, :index, :show]
-  # patch 'orders/update'
-  # get 'orders/check'
-  # get 'orders/complete'
+  namespace :admin do
+    root to: 'homes#top'
+  end
+
+  scope module: :public do
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
+    get 'customers/my_page' => 'customers#show'
+    get 'customers/edit'
+    patch 'customers/update'
+    get 'customers/check'
+    patch 'customers/withdraw'
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete 'cart_items/destroy_all'
+    resources :orders, only: [:new, :index, :show]
+    patch 'orders/update'
+    get 'orders/check'
+    get 'orders/complete'
+  end
+
+
 
   # namespace :admin do
   #   get '' => 'admin/homes#top'
