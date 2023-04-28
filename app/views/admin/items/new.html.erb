@@ -1,2 +1,37 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<h1>商品新規登録</h1>
+
+<%= form_with model: @item do |f| %>
+
+<table>
+  <tbody>
+    <tr>
+      <th>商品画像</th>
+      <th>
+        <%= f.file_field :image, placeholder: "ファイルを選択", accept: "image/*" %>
+      </th>
+    </tr>
+    <tr>
+      <th>商品名</th>
+      <th>
+        <%= f.text_field :name, placeholder:"商品名" %>
+      </th>
+    </tr>
+    <tr>
+      <th>商品説明</th>
+      <th>
+        <%= f.text_area :introduction, placeholder:"ここに説明文を記述します" %>
+      </th>
+    </tr>
+    <tr>
+      <th>税抜価格</th>
+      <th>
+        <%= f.text_field :price, placeholder:"1000" %>
+      </th>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <%= f.submit "新規登録", class: 'btn btn-sm btn-success' %>
+</div>
+
+<% end %>
