@@ -1,2 +1,21 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div>
+  <%= image_tag @item.get_image(300,300) %>
+</div>
+<table>
+  <tbody>
+    <tr>
+      <th><%= @item.name %></th>
+    </tr>
+    <tr>
+      <th><%= @item.introduction %></th>
+    </tr>
+    <tr>
+      <th>￥<%= @item.add_tax_price %>(税込)</th>
+    </tr>
+  </tbody>
+</table>
+
+<div></div>
+<div>
+    <%= link_to "カートに入れる", cart_items_path, class: 'btn btn-sm btn-success' %>
+</div>
