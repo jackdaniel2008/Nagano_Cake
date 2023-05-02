@@ -1,14 +1,17 @@
 class Public::CartItemsController < ApplicationController
+
+  def index
+    @cart_items = CartItem.all
+  end
+
   def create
     @cart_item = CartItem.new(cart_item_params)
     if @cart_item.save
-      redirect_to cart_items_path(@cart_item.id)
+      redirect_to cart_items_path
     else
-      render template: "public/items/show"
+      @cart_items = CartItem.all
+      render :index
     end
-  end
-
-  def index
   end
 
   def update

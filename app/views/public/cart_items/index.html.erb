@@ -1,3 +1,15 @@
 <h1>ショッピングカート</h1>
 
-
+<div>
+  <% @cart_items.each do |cart_item| %>
+  <div>
+    <%= image_tag cart_item.item.get_image(100,100) %>
+  </div>
+  <div>
+    <%= cart_item.item.name %>
+  </div>
+  <div>
+    ￥<%= cart_item.item.price %>
+  </div>
+  <% end %>
+</div>
