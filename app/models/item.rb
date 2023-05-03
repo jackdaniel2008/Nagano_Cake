@@ -4,6 +4,8 @@ class Item < ApplicationRecord
 
   has_many :cart_items, dependent: :destroy
   has_many :history_details, dependent: :destroy
+  
+  validates :price, presence: true
 
   def get_image(width, height)
     unless image.attached?
