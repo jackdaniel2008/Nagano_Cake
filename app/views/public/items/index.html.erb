@@ -11,7 +11,7 @@
     <%= item.name %>
   </div>
   <div>
-    ￥<%= item.add_tax_price %>
+    ￥<%= (item.price*1.1).floor %>
   </div>
   <% end %>
 </div>
