@@ -17,7 +17,7 @@
         税込価格<br>
         (税抜価格)
       </th>
-      <th><%= @item.add_tax_price %>円(<%= @item.price %>円)</th>
+      <th><%= @item.with_tax_price %>円(<%= @item.price %>円)</th>
     </tr>
   </tbody>
 </table>

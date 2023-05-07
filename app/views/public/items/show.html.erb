@@ -11,7 +11,7 @@
       <th><%= @item.introduction %></th>
     </tr>
     <tr>
-      <th>￥<%= (@item.price*1.1).floor %>(税込)</th>
+      <th>￥<%= @item.with_tax_price %>(税込)</th>
     </tr>
   </tbody>
 </table>

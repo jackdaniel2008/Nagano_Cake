@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_customer!, only: [:show]
+
   def new
     @item = Item.new
   end
