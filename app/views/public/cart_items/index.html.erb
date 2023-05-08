@@ -1,5 +1,8 @@
 <h1>ショッピングカート</h1>
 
+<div>
+  <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-danger" %>
+</div>
 <table>
   <thead>
     <th>商品名</th>
@@ -34,6 +37,6 @@
 <table>
   <tbody>
     <th>合計</th>
-    <th><%= total %></th>
+    <td><%= total %></td>
   </tbody>
 </table>

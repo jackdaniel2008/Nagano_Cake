@@ -1,2 +1,11 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<h1>注文情報入力</h1>
+
+<%= form_with model: @order, url: orders_path do |f| %>
+<div>
+  <%= f.radio_button :payment_method, OrderHistory.payment_methods.key(0) %>
+  <%= f.label :payment_method_credit_card, OrderHistory.payment_methods_i18n[:credit_card] %>
+
+  <%= f.radio_button :payment_method, OrderHistory.payment_methods.key(1) %>
+  <%= f.label :payment_method_transfer, OrderHistory.payment_methods_i18n[:transfer] %>
+</div>
+<% end %>

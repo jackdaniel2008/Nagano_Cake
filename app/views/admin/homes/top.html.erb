@@ -1,2 +1,30 @@
 <h1>注文履歴一覧</h1>
 <!--管理者トップページ-->
+<table>
+  <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+    </tr>
+  </thead>
+  <% @customers.each do |customer| %>
+  <tbody>
+    <tr>
+      <td>
+        <!--注文履歴詳細へのリンクにする-->
+          <%= customer.updated_at %>
+      </td>
+      <td>
+        <%= customer.last_name %><%= customer.first_name %>
+      </td>
+      <td>
+        <%= customer.id %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<div>
+  <%= paginate @customers %>
+</div>
