@@ -1,7 +1,6 @@
 <h1>商品新規登録</h1>
 
 <%= form_with model: @item, url:admin_items_path do |f| %>
-
 <table>
   <tbody>
     <tr>
@@ -33,5 +32,4 @@
 <div>
   <%= f.submit "新規登録", class: 'btn btn-sm btn-success' %>
 </div>
-
 <% end %>

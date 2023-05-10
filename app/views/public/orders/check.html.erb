@@ -1,0 +1,56 @@
+<h1>注文情報確認</h1>
+
+<table>
+  <thead>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </thead>
+  <tbody>
+  <% total = 0 %>
+  <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= image_tag cart_item.item.get_image(100,100) %><%= cart_item.item.name %></td>
+      <td><%= cart_item.item.with_tax_price %></td>
+      <td><%= cart_item.amount %></td>
+      <td><%= cart_item.subtotal %></td>
+    </tr>
+    <% total += cart_item.subtotal %>
+  <% end %>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <th>送料</th>
+      <td><%= 800 %>円</td>
+    </tr>
+    <tr>
+      <th>商品合計</th>
+      <td><%= total %>円</td>
+    </tr>
+    <tr>
+      <th>請求金額</th>
+      <td><%= (total + 800) %>円</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <th>支払い方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+    </tr>
+    <tr>
+      <th>お届け先</th>
+        <td>
+          <%= "〒" + @order.shipping_postal_code %>
+          <%= @order.shipping_address %>
+          <%= @order.shipping_name %>
+        </td>
+    </tr>
+  </tbody>
+</table>
