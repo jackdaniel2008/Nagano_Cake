@@ -28,9 +28,10 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all'
     get 'orders/new'
     post 'orders/check'
+    post 'orders/create'
     get 'orders/complete'
     resources :orders, only: [:index, :show]
-    patch 'orders/update'
+
   end
 
 

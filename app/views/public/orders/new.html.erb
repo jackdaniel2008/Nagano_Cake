@@ -1,6 +1,6 @@
 <h1>注文情報入力</h1>
 
-<%= form_with model: @order, url: orders_check_path do |f| %>
+<%= form_with model: @order, url: orders_check_path, method: :post, local: true do |f| %>
   <div>支払方法</div>
   <table>
     <tbody>
