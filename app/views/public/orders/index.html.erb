@@ -17,10 +17,12 @@
           <%= order_history.shipping_address %><br>
           <%= order_history.shipping_name %>
         </td>
-        <td></td>
-        <td><%= order_history.total_amount %></td>
         <td>
-          <%= link_to "表示する", order_path(history_detail.id), class: "btn btn-primary" %>
+          <%=  %>
+        </td>
+        <td><%= order_history.total_amount %>円</td>
+        <td>
+          <%= link_to "表示する", order_path(order_history.id), class: "btn btn-primary" %>
         </td>
       </tr>
     <% end %>

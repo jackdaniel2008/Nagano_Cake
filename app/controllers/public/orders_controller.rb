@@ -36,6 +36,7 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.save
 
+    #カート内商品を1つずつ取り出しループ
     current_customer.cart_items.each do |cart_item|
       @order_detail = HistoryDetail.new
       @order_detail.order_history_id = @order.id
