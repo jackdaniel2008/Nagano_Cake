@@ -12,8 +12,9 @@
   <tbody>
     <tr>
       <td>
-        <!--注文履歴詳細へのリンクにする-->
+        <%= link_to admin_order_path(customer.id) do %>
           <%= customer.updated_at %>
+        <% end %>
       </td>
       <td>
         <%= customer.last_name %><%= customer.first_name %>

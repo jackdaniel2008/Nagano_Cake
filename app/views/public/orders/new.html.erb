@@ -1,7 +1,7 @@
 <h1>注文情報入力</h1>
 
 <%= form_with model: @order, url: orders_check_path, method: :post, local: true do |f| %>
-  <div>支払方法</div>
+  <h2>支払方法</h2>
   <table>
     <tbody>
       <tr>
@@ -15,7 +15,7 @@
     </tbody>
   </table>
 
-  <div>お届け先</div>
+  <h2>お届け先</h2>
   <table>
     <tbody>
       <tr>

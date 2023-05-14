@@ -36,14 +36,14 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.save
 
-    #カート内商品を1つずつ取り出しループ
+    #カート内商品を1つずつ取り出しループしてhistory_detailテーブルに保存
     current_customer.cart_items.each do |cart_item|
-      @order_detail = HistoryDetail.new
-      @order_detail.order_history_id = @order.id
-      @order_detail.item_id = cart_item.item_id
-      @order_detail.post_tax_price = cart_item.item.with_tax_price
-      @order_detail.amount = cart_item.amount
-      @order_detail.save
+      @history_detail = HistoryDetail.new
+      @history_detail.order_history_id = @order.id
+      @history_detail.item_id = cart_item.item_id
+      @history_detail.post_tax_price = cart_item.item.with_tax_price
+      @history_detail.amount = cart_item.amount
+      @history_detail.save
     end
 
     current_customer.cart_items.destroy_all
@@ -60,7 +60,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = OrderHistory.find(params[:id])
-    @order_detail = @order.history_details
+    @history_detail = @order.history_details
   end
 
   private
