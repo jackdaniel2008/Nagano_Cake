@@ -8,15 +8,15 @@
     </tr>
     <tr>
       <th>注文日</th>
-      <th><%= @customer.updated_at %></th>
+      <th><%= @order.updated_at %></th>
     </tr>
     <tr>
       <th>配送先</th>
-      <th><%= @customer.postal_code %><%= @customer.address %><%= @customer.last_name %> <%= @customer.first_name %></th>
+      <th><%= @order.shipping_postal_code %><%= @order.shipping_address %><%= @order.shipping_name %></th>
     </tr>
     <tr>
       <th>支払方法</th>
-      <th><%= @customer.id %></th>
+      <th><%= @order.payment_method_i18n %></th>
     </tr>
   </tbody>
 </table>
@@ -31,24 +31,25 @@
     </tr>
   </thead>
   <% total = 0 %>
-  <% @cart_items.each do |cart_item| %>
+  <!--whereメソッドを使ったeach文？-->
+  <% @history_details.each do |history_detail| %>
   <tbody>
     <tr>
       <td>
-        <%= cart_item.item.name %>
+        <%= history_detail.item.name %>
       </td>
       <td>
-        <%= cart_item.item.with_tax_price %>
+        <%= history_detail.post_tax_price %>
       </td>
       <td>
-        <%= cart_item.amount %>
+        <%= history_detail.amount %>
       </td>
       <td>
-        <%= cart_item.subtotal %>
+        <%= history_detail.subtotal %>
       </td>
     </tr>
   </tbody>
-  <% total += cart_item.subtotal %>
+  <% total += history_detail.subtotal %>
   <% end %>
 </table>
 

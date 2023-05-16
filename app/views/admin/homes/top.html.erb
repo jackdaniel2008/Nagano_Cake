@@ -8,24 +8,24 @@
       <th>注文個数</th>
     </tr>
   </thead>
-  <% @customers.each do |customer| %>
+  <% @history_details.each do |history_detail| %>
   <tbody>
     <tr>
       <td>
-        <%= link_to admin_order_path(customer.id) do %>
-          <%= customer.updated_at %>
+        <%= link_to admin_order_path(history_detail.id) do %>
+          <%= history_detail.created_at %>
         <% end %>
       </td>
       <td>
-        <%= customer.last_name %><%= customer.first_name %>
+        <%= history_detail.order_history.customer.last_name %><%= history_detail.order_history.customer.first_name %>
       </td>
       <td>
-        <%= customer.id %>
+        <%= history_detail.amount %>
       </td>
     </tr>
   </tbody>
   <% end %>
 </table>
 <div>
-  <%= paginate @customers %>
+  <%= paginate @history_details %>
 </div>
