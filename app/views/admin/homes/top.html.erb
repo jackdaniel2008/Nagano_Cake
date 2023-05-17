@@ -8,24 +8,29 @@
       <th>注文個数</th>
     </tr>
   </thead>
-  <% @history_details.each do |history_detail| %>
+  <% @orders.each do |order_history| %>
   <tbody>
     <tr>
       <td>
-        <%= link_to admin_order_path(history_detail.id) do %>
-          <%= history_detail.created_at %>
-        <% end %>
+      <%= link_to admin_order_path(order_history.id) do %>
+        <%= order_history.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+      <% end %>
       </td>
       <td>
-        <%= history_detail.order_history.customer.last_name %><%= history_detail.order_history.customer.first_name %>
+        <%= order_history.customer.last_name %><%= order_history.customer.first_name %>
       </td>
       <td>
-        <%= history_detail.amount %>
+      <!--eachメソッドの入れ子構造と変数sumで購入個数を定義-->
+      <% sum = 0 %>
+      <% order_history.history_details.each do |history_detail| %>
+        <% sum += history_detail.amount %>
+      <% end %>
+        <%= sum %>
       </td>
     </tr>
   </tbody>
   <% end %>
 </table>
 <div>
-  <%= paginate @history_details %>
+  <%= paginate @orders %>
 </div>

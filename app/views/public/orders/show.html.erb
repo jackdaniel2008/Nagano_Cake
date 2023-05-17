@@ -1,3 +1,62 @@
 <h1>注文履歴詳細</h1>
 
+<h2>注文情報</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>注文日</th>
+      <th><%= @order.created_at.strftime('%Y/%m/%d') %></th>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <th>
+        <%= @order.shipping_postal_code %><br>
+        <%= @order.shipping_address %><br>
+        <%= @order.shipping_name %>
+      </th>
+    </tr>
+    <tr>
+      <th>支払い方法</th>
+      <th><%= @order.payment_method_i18n %></th>
+    </tr>
+  </tbody>
+</table>
 
+<h2>請求情報</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>商品合計</th>
+      <th><%= @order.total_amount.to_s(:delimited) %>円</th>
+    </tr>
+    <tr>
+      <th>配送料</th>
+      <% @order.postage = 800 %>
+      <th><%= @order.postage.to_s(:delimited) %>円</th>
+    </tr>
+    <tr>
+      <th>ご請求額</th>
+      <% total_price = @order.postage.to_i + @order.total_amount.to_i %>
+      <th><%= total_price.to_s(:delimited) %>円</th>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <th>商品</th>
+    <th>単価</th>
+    <th>個数</th>
+    <th>小計</th>
+  </thead>
+  <tbody>
+    <% @history_details.each do |history_detail| %>
+      <tr>
+        <td><%= history_detail.item.name %></td>
+		    <td><%= history_detail.item.with_tax_price.to_s(:delimited) %>円</td>
+		    <td><%= history_detail.amount %></td>
+		    <td><%= history_detail.subtotal.to_s(:delimited) %>円</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

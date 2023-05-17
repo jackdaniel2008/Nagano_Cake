@@ -11,7 +11,7 @@
     <%= item.name %>
   </div>
   <div>
-    ￥<%= (item.price*1.1).floor %>
+    ￥<%= (item.price*1.1).floor.to_s(:delimited) %>
   </div>
   <% end %>
 </div>

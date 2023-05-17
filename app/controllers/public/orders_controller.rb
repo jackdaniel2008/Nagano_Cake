@@ -60,7 +60,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = OrderHistory.find(params[:id])
-    @history_detail = @order.history_details
+    @history_details = @order.history_details.all
   end
 
   private

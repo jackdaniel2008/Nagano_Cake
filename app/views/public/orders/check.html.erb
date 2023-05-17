@@ -8,15 +8,15 @@
     <th>小計</th>
   </thead>
   <tbody>
-  <% total = 0 %>
+  <% @order.total_amount = 0 %>
   <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= image_tag cart_item.item.get_image(100,100) %><%= cart_item.item.name %></td>
-      <td><%= cart_item.item.with_tax_price %></td>
+      <td><%= cart_item.item.with_tax_price.to_s(:delimited) %>円</td>
       <td><%= cart_item.amount %></td>
-      <td><%= cart_item.subtotal %></td>
+      <td><%= cart_item.subtotal.to_s(:delimited) %>円</td>
     </tr>
-    <% total += cart_item.subtotal %>
+    <% @order.total_amount += cart_item.subtotal %>
   <% end %>
   </tbody>
 </table>
@@ -26,16 +26,16 @@
     <tr>
       <th>送料</th>
       <% @order.postage = 800 %>
-      <td><%= @order.postage %>円</td>
+      <td><%= @order.postage.to_s(:delimited) %>円</td>
     </tr>
     <tr>
       <th>商品合計</th>
-      <td><%= total.to_i %>円</td>
+      <td><%= @order.total_amount.to_s(:delimited) %>円</td>
     </tr>
     <tr>
       <th>請求金額</th>
-      <% @order.total_amount = @order.postage + total.to_i %>
-      <td><%= @order.total_amount %>円</td>
+      <% total_price = @order.postage.to_i + @order.total_amount.to_i %>
+      <td><%= total_price.to_s(:delimited) %>円</td>
     </tr>
   </tbody>
 </table>

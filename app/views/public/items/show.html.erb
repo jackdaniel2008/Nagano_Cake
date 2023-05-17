@@ -8,10 +8,10 @@
       <th><%= @item.name %></th>
     </tr>
     <tr>
-      <th><%= @item.introduction %></th>
+      <td><%= @item.introduction %></td>
     </tr>
     <tr>
-      <th>￥<%= @item.with_tax_price %>(税込)</th>
+      <th>￥<%= @item.with_tax_price.to_s(:delimited) %>(税込)</th>
     </tr>
   </tbody>
 </table>

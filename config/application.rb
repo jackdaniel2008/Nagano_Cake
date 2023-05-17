@@ -14,6 +14,9 @@ module NaganoCake
     # 日本語化させるための(i18n)という記述
     config.i18n.default_locale = :ja
 
+    # タイムゾーンを日本時間に設定
+    config.time_zone = 'Asia/Tokyo'
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

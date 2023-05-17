@@ -11,21 +11,20 @@
   <tbody>
     <% @orders.each do |order_history| %>
       <tr>
-        <td><%= order_history.created_at %></td>
+        <td><%= order_history.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
         <td>
           <%= "〒" + order_history.shipping_postal_code %><br>
           <%= order_history.shipping_address %><br>
           <%= order_history.shipping_name %>
         </td>
         <td>
-        <!--whereメソッドを使ったeach文-->
-        <% history_details = HistoryDetail.where(order_history_id: 1) %>
-        <% history_details.each do |history_detail| %>
+        <!--eachメソッドの入れ子構造で中の商品名などを定義-->
+        <% order_history.history_details.each do |history_detail| %>
           <%= history_detail.item.name %><br>
         <% end %>
         </td>
         <td>
-          <%= order_history.total_amount %>円
+          <%= order_history.total_amount.to_s(:delimited) %>円
         </td>
         <td>
           <%= link_to "表示する", order_path(order_history.id), class: "btn btn-primary" %>
