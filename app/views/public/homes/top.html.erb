@@ -1,29 +1,29 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-xs-12 mx-auto">
-      <div class="text-center">
-        <p>
-          ようこそ、ながのCAKEへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。
-        </p>
-      </div>
+    <div class="col-xs-4">
+      <strong>ジャンル検索</strong>
+      <ul class="list-unstyled">
+        <li>ケーキ</li>
+        <li>焼き菓子</li>
+        <li>プリン</li>
+        <li>キャンディ</li>
+      </ul>
+    </div>
+    <div class="col-xs-8 cover-img m-auto">
+      <%= image_tag "nagano_cake_top.jpg" %>
+        <div class="cover-text text-center m-auto">
+          <strong>
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </strong>
+        </div>
     </div>
   </div>
 </div>
 
-<div>
-  <strong>ジャンル検索</strong>
-  <ul class="list-unstyled">
-    <li>ケーキ</li>
-    <li>焼き菓子</li>
-    <li>プリン</li>
-    <li>キャンディ</li>
-  </ul>
-</div>
-
-<div class="container new-item">
+<div class="container new-item mt-5">
   <h2>新着商品</h2>
   <div class="row">
     <% @items.first(4).each do |item| %>
