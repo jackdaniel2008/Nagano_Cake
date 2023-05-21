@@ -15,7 +15,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <% if admin_signed_in? %>
-            <%= link_to "ながのCAKE", admin_orders_path, class:"header-title navbar-brand text-dark" %>
+            <%= link_to "ながのCAKE", root_path, class:"header-title navbar-brand text-dark" %>
           <% else %>
             <%= link_to "ながのCAKE", root_path, class:"header-title navbar-brand text-dark" %>
           <% end %>
