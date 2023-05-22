@@ -1,35 +1,46 @@
-<h1>注文履歴一覧</h1>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <h2 class="table-secondary text-center">注文履歴一覧</h2>
+    </div>
+    <div class="col-md-7"></div>
+  </div>
 
-<table>
-  <thead>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払金額</th>
-    <th>注文詳細</th>
-  </thead>
-  <tbody>
-    <% @orders.each do |order_history| %>
-      <tr>
-        <td><%= order_history.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-        <td>
-          <%= "〒" + order_history.shipping_postal_code %><br>
-          <%= order_history.shipping_address %><br>
-          <%= order_history.shipping_name %>
-        </td>
-        <td>
-        <!--eachメソッドの入れ子構造で中の商品名などを定義-->
-        <% order_history.history_details.each do |history_detail| %>
-          <%= history_detail.item.name %><br>
-        <% end %>
-        </td>
-        <td>
-          <%= order_history.total_amount.to_s(:delimited) %>円
-        </td>
-        <td>
-          <%= link_to "表示する", order_path(order_history.id), class: "btn btn-primary" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-10">
+      <table class="table table-bordered">
+        <thead class="table-secondary">
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>注文詳細</th>
+        </thead>
+        <tbody>
+          <% @orders.each do |order_history| %>
+            <tr>
+              <td><%= order_history.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                <%= "〒" + order_history.shipping_postal_code %><br>
+                <%= order_history.shipping_address %><br>
+                <%= order_history.shipping_name %>
+              </td>
+              <td>
+              <!--eachメソッドの入れ子構造で中の商品名などを定義-->
+              <% order_history.history_details.each do |history_detail| %>
+                <%= history_detail.item.name %><br>
+              <% end %>
+              </td>
+              <td>
+                <%= order_history.total_amount.to_s(:delimited) %>円
+              </td>
+              <td>
+                <%= link_to "表示する", order_path(order_history.id), class: "btn btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

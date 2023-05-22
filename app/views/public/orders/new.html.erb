@@ -1,59 +1,87 @@
-<h1>注文情報入力</h1>
-
-<%= form_with model: @order, url: orders_check_path, method: :post, local: true do |f| %>
-  <h2>支払方法</h2>
-  <table>
-    <tbody>
-      <tr>
-        <td><%= f.radio_button :payment_method, OrderHistory.payment_methods.key(0), checked: "checked" %></td>
-        <td><%= f.label :payment_method_credit_card, OrderHistory.payment_methods_i18n[:credit_card] %></td>
-      </tr>
-      <tr>
-        <td><%= f.radio_button :payment_method, OrderHistory.payment_methods.key(1) %></td>
-        <td><%= f.label :payment_method_transfer, OrderHistory.payment_methods_i18n[:transfer] %></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>お届け先</h2>
-  <table>
-    <tbody>
-      <tr>
-        <!--order_historyモデルにenumで定義した値を使用-->
-        <td><%= f.radio_button :select_address, "0", checked: "checked" %></td>
-        <td><%= f.label :select_address_my_address, "ご自身の住所" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= "〒" + current_customer.postal_code %> <%= current_customer.address %> <%= current_customer.last_name %> <%= current_customer.first_name %></td>
-      </tr>
-    </tbody>
-  </table>
-  <table>
-    <tbody>
-      <tr>
-        <td><%= f.radio_button :select_address, "1" %></td>
-        <td><%= f.label :select_address_new_address, "新しいお届け先" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= f.label :select_address_postal_code, "郵便番号(ハイフンなし)" %></td>
-        <td><%= f.text_field :shipping_postal_code, placeholder:"0000000" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= f.label :select_address_address, "住所" %></td>
-        <td><%= f.text_field :shipping_address, placeholder:"東京都渋谷区代々木神園町0-0" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= f.label :select_address_name, "宛名" %></td>
-        <td><%= f.text_field :shipping_name, placeholder:"令和太郎" %></td>
-      </tr>
-    </tbody>
-  </table>
-  <div>
-    <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <h2 class="table-secondary text-center">注文情報入力</h2>
+    </div>
+    <div class="col-md-7"></div>
   </div>
-<% end %>
+
+  <%= form_with model: @order, url: orders_check_path, method: :post, local: true do |f| %>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-10">
+      <strong>支払方法</strong>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-1"></div>
+    <div class="col-md-9">
+      <table>
+        <tbody>
+          <tr>
+            <td><%= f.radio_button :payment_method, OrderHistory.payment_methods.key(0), checked: "checked" %></td>
+            <td><%= f.label :payment_method_credit_card, OrderHistory.payment_methods_i18n[:credit_card] %></td>
+          </tr>
+          <tr>
+            <td><%= f.radio_button :payment_method, OrderHistory.payment_methods.key(1) %></td>
+            <td><%= f.label :payment_method_transfer, OrderHistory.payment_methods_i18n[:transfer] %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-10">
+      <strong>お届け先</strong>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-1"></div>
+    <div class="col-md-9">
+      <table>
+        <tbody>
+          <tr>
+            <!--order_historyモデルにenumで定義した値を使用-->
+            <td><%= f.radio_button :select_address, "0", checked: "checked" %></td>
+            <td><%= f.label :select_address_my_address, "ご自身の住所" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= "〒" + current_customer.postal_code %> <%= current_customer.address %> <%= current_customer.last_name %> <%= current_customer.first_name %></td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr>
+            <td><%= f.radio_button :select_address, "1" %></td>
+            <td><%= f.label :select_address_new_address, "新しいお届け先" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.label :select_address_postal_code, "郵便番号(ハイフンなし)" %></td>
+            <td><%= f.text_field :shipping_postal_code, placeholder:"0000000" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.label :select_address_address, "住所" %></td>
+            <td><%= f.text_field :shipping_address, placeholder:"東京都渋谷区代々木神園町0-0" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.label :select_address_name, "宛名" %></td>
+            <td><%= f.text_field :shipping_name, placeholder:"令和太郎" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+    <div class="col text-center">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <% end %>
+</div>
 
