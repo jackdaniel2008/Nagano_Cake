@@ -24,14 +24,17 @@ Rails.application.routes.draw do
     get 'customers/check'
     patch 'customers/withdraw'
     resources :items, only: [:index, :show]
-    resources :cart_items, only: [:index, :create, :update, :destroy]
-    delete 'cart_items/destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+    # :id の必要ない全体のデータに対するアクションの場合は collection を使用する
+      collection do
+        delete 'cart_items/destroy_all'
+      end
+    end
     get 'orders/new'
     post 'orders/check'
     post 'orders/create'
     get 'orders/complete'
     resources :orders, only: [:index, :show]
-
   end
 
 

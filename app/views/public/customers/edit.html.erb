@@ -1,39 +1,39 @@
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-3">
-      <h2 class="table-secondary text-center">会員情報編集</h2>
+      <h3 class="table-secondary text-center">会員情報編集</h3>
     </div>
     <div class="col-md-7"></div>
   </div>
 
-  <%= form_with model: @customer, url: customers_my_page_edit_path do |f| %>
+  <%= form_with model: @customer, url: customers_update_path, method: :patch, local: true do |f| %>
   <div class="row justify-content-center mt-3">
-    <div class="col-md-10">
-      <table>
+    <div class="col-md-9">
+      <table class="table table-borderless">
         <tbody>
           <tr>
             <th>氏名</th>
-            <th>
+            <td>
               <%= f.text_field :last_name, autofocus: true, placeholder:"姓" %>
-            </th>
-            <th>
+            </td>
+            <td>
               <%= f.text_field :first_name, autofocus: true, placeholder:"名" %>
-            </th>
+            </td>
           </tr>
           <tr>
             <th>フリガナ</th>
-            <th>
+            <td>
               <%= f.text_field :last_name_kana, autofocus: true, placeholder:"セイ" %>
-            </th>
-            <th>
+            </td>
+            <td>
               <%= f.text_field :first_name_kana, autofocus: true, placeholder:"メイ" %>
-            </th>
+            </td>
           </tr>
           <tr>
             <th>郵便番号(ハイフンなし)</th>
-            <th>
+            <td>
               <%= f.text_field :postal_code %>
-            </th>
+            </td>
           </tr>
           <tr>
             <th>住所</th>
@@ -43,29 +43,29 @@
           </tr>
           <tr>
             <th>電話番号(ハイフンなし)</th>
-            <th>
+            <td>
               <%= f.text_field :telephone_number %>
-            </th>
+            </td>
           </tr>
           <tr>
             <th>メールアドレス</th>
-            <th>
+            <td>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
-            </th>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <% end %>
-
+  
   <div class="row mt-3">
-    <div class="col-md-3"></div>
+    <div class="col-md-5"></div>
     <div class="col-md-3">
-      <%= link_to "編集内容を保存", customers_update_path, method: :patch, class: 'btn btn-sm btn-success' %>
+      <%= f.submit "編集内容を保存", class: 'btn btn-sm btn-success' %>
     </div>
     <div class="col-md-2">
       <%= link_to "退会する", customers_check_path, class: 'btn btn-sm btn-danger' %>
     </div>
   </div>
+  <% end %>
 </div>

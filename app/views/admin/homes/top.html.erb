@@ -1,36 +1,48 @@
-<h1>注文履歴一覧</h1>
-<!--管理者トップページ-->
-<table>
-  <thead>
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-    </tr>
-  </thead>
-  <% @orders.each do |order_history| %>
-  <tbody>
-    <tr>
-      <td>
-      <%= link_to admin_order_path(order_history.id) do %>
-        <%= order_history.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
-      <% end %>
-      </td>
-      <td>
-        <%= order_history.customer.last_name %><%= order_history.customer.first_name %>
-      </td>
-      <td>
-      <!--eachメソッドの入れ子構造と変数sumで購入個数を定義-->
-      <% sum = 0 %>
-      <% order_history.history_details.each do |history_detail| %>
-        <% sum += history_detail.amount %>
-      <% end %>
-        <%= sum %>
-      </td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <h3 class="table-secondary text-center">注文履歴一覧</h3>
+    </div>
+    <div class="col-md-7"></div>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead class="table-secondary">
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+          </tr>
+        </thead>
+        <% @orders.each do |order_history| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to admin_order_path(order_history.id) do %>
+                <%= order_history.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+              <% end %>
+            </td>
+            <td>
+              <%= order_history.customer.last_name %><%= order_history.customer.first_name %>
+            </td>
+            <td>
+              <!--eachメソッドの入れ子構造と変数sumで購入個数を定義-->
+              <% sum = 0 %>
+              <% order_history.history_details.each do |history_detail| %>
+                <% sum += history_detail.amount %>
+              <% end %>
+              <%= sum %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
 <div>
   <%= paginate @orders %>
 </div>
