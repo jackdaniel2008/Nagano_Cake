@@ -13,7 +13,7 @@
       <%= link_to "退会しない", customers_my_page_edit_path, class: 'btn btn-sm btn-primary' %>
     </div>
     <div class="col-md-2 mx-auto align-items-center">
-      <%= link_to "退会する", customers_withdraw_path, method: :patch, class: 'btn btn-sm btn-danger' %>
+      <%= link_to "退会する", customers_withdraw_path, method: :patch, class: 'btn btn-sm btn-danger', data: {confirm: '本当に退会してよろしいですか？'} %>
     </div>
     <div class="col-md-3"></div>
   </div>
